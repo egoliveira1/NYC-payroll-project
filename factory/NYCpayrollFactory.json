@@ -1,4 +1,12 @@
 {
 	"name": "NYCpayrollFactory",
+	"properties": {
+		"globalParameters": {
+			"GlogalParameter": {
+				"type": "string",
+				"value": "&PipelineParameter"
+			}
+		}
+	},
 	"location": "westeurope"
 }
