@@ -75,6 +75,191 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/Master pipeline')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Employee",
+						"type": "ExecuteDataFlow",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataflow": {
+								"referenceName": "Employee dataflow",
+								"type": "DataFlowReference",
+								"parameters": {},
+								"datasetParameters": {
+									"Employee": {},
+									"EmployeeSynapse": {}
+								}
+							},
+							"staging": {
+								"linkedService": {
+									"referenceName": "LinkService_Azure_DL_Files",
+									"type": "LinkedServiceReference"
+								},
+								"folderPath": "adlsnycpayrollcontainer/dirstaging"
+							},
+							"compute": {
+								"coreCount": 8,
+								"computeType": "General"
+							},
+							"traceLevel": "Fine"
+						}
+					},
+					{
+						"name": "Title",
+						"type": "ExecuteDataFlow",
+						"dependsOn": [
+							{
+								"activity": "Employee",
+								"dependencyConditions": [
+									"Completed"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataflow": {
+								"referenceName": "Title dataflow",
+								"type": "DataFlowReference",
+								"parameters": {},
+								"datasetParameters": {
+									"Title": {},
+									"TitleSynapse": {}
+								}
+							},
+							"staging": {
+								"linkedService": {
+									"referenceName": "LinkService_Azure_DL_Files",
+									"type": "LinkedServiceReference"
+								},
+								"folderPath": "adlsnycpayrollcontainer/dirstaging"
+							},
+							"compute": {
+								"coreCount": 8,
+								"computeType": "General"
+							},
+							"traceLevel": "Fine"
+						}
+					},
+					{
+						"name": "Agency",
+						"type": "ExecuteDataFlow",
+						"dependsOn": [
+							{
+								"activity": "Title",
+								"dependencyConditions": [
+									"Completed"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataflow": {
+								"referenceName": "Agency dataflow",
+								"type": "DataFlowReference",
+								"parameters": {},
+								"datasetParameters": {
+									"AgencyDB": {},
+									"AgencySynapse": {}
+								}
+							},
+							"staging": {
+								"linkedService": {
+									"referenceName": "LinkService_Azure_DL_Files",
+									"type": "LinkedServiceReference"
+								},
+								"folderPath": "adlsnycpayrollcontainer/dirstaging"
+							},
+							"compute": {
+								"coreCount": 8,
+								"computeType": "General"
+							},
+							"traceLevel": "Fine"
+						}
+					},
+					{
+						"name": "Payroll2021",
+						"type": "ExecuteDataFlow",
+						"dependsOn": [
+							{
+								"activity": "Agency",
+								"dependencyConditions": [
+									"Completed"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataflow": {
+								"referenceName": "Payroll 2021 to Synapse",
+								"type": "DataFlowReference",
+								"parameters": {},
+								"datasetParameters": {
+									"Payroll": {},
+									"Payroll2021Synapse": {}
+								}
+							},
+							"staging": {
+								"linkedService": {
+									"referenceName": "LinkService_Azure_DL_Files",
+									"type": "LinkedServiceReference"
+								},
+								"folderPath": "adlsnycpayrollcontainer/dirstaging"
+							},
+							"compute": {
+								"coreCount": 8,
+								"computeType": "General"
+							},
+							"traceLevel": "Fine"
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/dataflows/Employee dataflow')]",
+				"[concat(variables('factoryId'), '/linkedServices/LinkService_Azure_DL_Files')]",
+				"[concat(variables('factoryId'), '/dataflows/Title dataflow')]",
+				"[concat(variables('factoryId'), '/dataflows/Agency dataflow')]",
+				"[concat(variables('factoryId'), '/dataflows/Payroll 2021 to Synapse')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/AgencyMaster')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
