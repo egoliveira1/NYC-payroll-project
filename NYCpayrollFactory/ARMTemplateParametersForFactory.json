@@ -1,0 +1,21 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "NYCpayrollFactory"
+		},
+		"LinkService_Azure_DL_Files_accountKey": {
+			"value": ""
+		},
+		"LinkService_SQL_db_connectionString": {
+			"value": ""
+		},
+		"LinkService_Synapse_connectionString": {
+			"value": ""
+		},
+		"LinkService_Azure_DL_Files_properties_typeProperties_url": {
+			"value": "https://adlsnycpayrollerono.dfs.core.windows.net/"
+		}
+	}
+}
