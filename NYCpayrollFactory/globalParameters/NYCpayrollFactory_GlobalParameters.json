@@ -1,1 +1,6 @@
-{}
+{
+	"GlogalParameter": {
+		"type": "string",
+		"value": "$PipelineParameter"
+	}
+}
