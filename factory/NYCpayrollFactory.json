@@ -1,0 +1,12 @@
+{
+	"name": "NYCpayrollFactory",
+	"properties": {
+		"globalParameters": {
+			"dataflow_param_fiscalyear": {
+				"type": "int",
+				"value": 2021
+			}
+		}
+	},
+	"location": "westeurope"
+}
