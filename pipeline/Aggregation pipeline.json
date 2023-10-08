@@ -1,0 +1,50 @@
+{
+	"name": "Aggregation pipeline",
+	"properties": {
+		"activities": [
+			{
+				"name": "Aggregation data",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "Dataflow Aggregate Data",
+						"type": "DataFlowReference",
+						"parameters": {
+							"dataflow_param_fiscalyear": {
+								"value": "@pipeline().parameters.PipelineParameter",
+								"type": "Expression"
+							}
+						}
+					},
+					"staging": {
+						"linkedService": {
+							"referenceName": "LinkService_Azure_DL_Files",
+							"type": "LinkedServiceReference"
+						},
+						"folderPath": "adlsnycpayrollcontainer/dirstaging"
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
+				}
+			}
+		],
+		"parameters": {
+			"PipelineParameter": {
+				"type": "string"
+			}
+		},
+		"annotations": []
+	}
+}
