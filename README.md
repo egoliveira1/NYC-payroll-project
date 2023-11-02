@@ -21,8 +21,25 @@ For this project, I worked in the Azure Portal, using several Azure resources, i
 The project was divided into 6 steps to organize and allow the correct management.
 
 ### Step 1: Prepare the Data Infrastructure
+The data infrastructure involves the creation of the following resources:
+- <b>Azure Data Lake Storage Gen2</b> (storage account) and associated storage container resource to upload the raw data.
+- <b>Azure Data Factory Resource</b>.
+- <b>SQL Database</b> and the table to store the current year data.
+- <b>Synapse Analytics workspace</b> and the master data tables.
+
 ### Step 2: Create Linked Services
+In the Azure Data Factory, three Linked Services were created:
+- To Azure Data Lake
+- To SQL Database
+- To Synapse Analytics
+
 ### Step 3: Create Datasets in Azure Data Factory
+In the Azure Data Factory, were created the Datasets to load the raw data and to save the transformed data.
+
 ### Step 4: Create Data Flows
+
+
 ### Step 5: Data Aggregation and Parameterization
 ### Step 6: Github connection
+
+
