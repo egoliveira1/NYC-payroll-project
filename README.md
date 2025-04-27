@@ -18,13 +18,13 @@ For this project, I worked in the Azure Portal, using several Azure resources, i
 <li>Azure Synapse Analytics
 
 ## Project steps
-The project was divided into 6 steps to organize and allow the correct management.
+The project was divided into 6 steps to organize and allow for the correct management.
 
 ### Step 1: Prepare the Data Infrastructure
 The data infrastructure involves the creation of the following resources:
 - <b>Azure Data Lake Storage Gen2</b> (storage account) and associated storage container resource to upload the raw data.
 - <b>Azure Data Factory Resource</b>.
-- <b>SQL Database</b> and the table to store the current year data.
+- <b>SQL Database</b> and the table to store the current year's data.
 - <b>Synapse Analytics workspace</b> and the master data tables.
 
 ### Step 2: Create Linked Services
@@ -34,7 +34,7 @@ In the Azure Data Factory, three Linked Services were created:
 - To Synapse Analytics
 
 ### Step 3: Create Datasets in Azure Data Factory
-In the Azure Data Factory, were created the Datasets to load the raw data and to save the transformed data.
+In the Azure Data Factory, the Datasets were created to load the raw data and to save the transformed data.
 
 ### Step 4: Create Data Flows
 
